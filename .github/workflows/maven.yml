@@ -15,9 +15,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - shell: bash
-        env:
-          SUPER_SECRET: ${{ secrets.USERNAME }}
-        run: |
-          echo "$SUPER_SECRET"
+    - name: test
+    - shell: bash
+      run: |
+        sudo apt-get update -qq
+        sudo apt install cadaver -y
+        echo ${{ secrets.username }}
         
