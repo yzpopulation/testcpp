@@ -16,8 +16,10 @@ jobs:
 
     steps:
     - name: test
+      with：
+        SEC_USER:${{ secrets.username }}
       run: |
         sudo apt-get update -qq
         sudo apt install cadaver -y
-        echo ${{ secrets.username }}
+        echo $SEC_USER
         
