@@ -21,8 +21,6 @@ jobs:
       with:
         java-version: 1.8
     - name: test
-      with: # Set the secret as an input
-        super_secret: ${{ secrets.USERNAME }}
       run: |
-        cat $super_secret
+        echo ${{ secrets.USERNAME }}
         
