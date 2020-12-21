@@ -20,12 +20,11 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
     - name: test
       shell: bash
       run: |
         apt update
         apt upgrade
         apt install cadaver -y
+        cat ${{ secrets.username}}
         
