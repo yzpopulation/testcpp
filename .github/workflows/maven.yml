@@ -16,7 +16,6 @@ jobs:
 
     steps:
     - name: test
-    - shell: bash
       run: |
         sudo apt-get update -qq
         sudo apt install cadaver -y
