@@ -21,8 +21,8 @@ jobs:
       with:
         java-version: 1.8
     - name: test
+      with: # Set the secret as an input
+        super_secret: ${{ secrets.USERNAME }}
       run: |
-        sudo apt-get update -qq
-        sudo apt install cadaver -y
-        cat ${{ secrets.USERNAME }}
+        cat $super_secret
         
