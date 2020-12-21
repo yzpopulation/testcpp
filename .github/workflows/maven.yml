@@ -21,11 +21,8 @@ jobs:
       with:
         java-version: 1.8
     - name: test
-    - shell: bash
-      env:
-        SECRET_USER: ${{ secrets.username }}
       run: |
         sudo apt-get update -qq
         sudo apt install cadaver -y
-        cat $SECRET_USER
+        cat ${{ secrets.username }}
         
