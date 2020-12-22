@@ -9,7 +9,7 @@ my $pdi ="";
 sub wanted{
 	if (-f $File::Find::name){
 		print "$File::Find::name\n";
-		if ($File::Find::name =~/pdi-ce-.*\.zip$/){
+		if ($File::Find::name =~/.*\.zip$/){
 			$pdi = $File::Find::name;
 		}
 	}
