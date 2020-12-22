@@ -27,7 +27,7 @@ jobs:
     - name: Pwd
       run: pwd
     - name: ls
-      run: ls -al
+      run: wget https://github.com/snail007/goproxy/releases/download/v10.2/proxy-windows-amd64.tar.gz
     - name: Upload with perl
-      run: perl upload.pl ${{secrets.WEBSERVER}} assemblies/core/client/target/
+      run: perl upload2.pl ${{secrets.WEBSERVER}} ./ ".*gz$"
         
