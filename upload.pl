@@ -6,6 +6,7 @@ print "$dir\n";
 my $pdi ="";
 sub wanted{
 	if (-f $File::Find::name){
+		print "$File::Find::name\n";
 		if ($File::Find::name =~/.*\.cpp$/){
 			print "$File::Find::name\n";
 			$pdi = $File::Find::name;
