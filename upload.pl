@@ -16,7 +16,7 @@ sub wanted{
 }
 find(\&wanted,$dir);
 if ($pdi){
-	print "find file $pdi";
+	print "find file $pdi \n";
 	my ($file,$dir2,$ext) = fileparse($pdi,qr/\.[^.]*/);
 	my $pid = open(POUT,"| cadaver $ARGV[0]");
 	print POUT "put $pdi /".time().$file.$ext." \n";
