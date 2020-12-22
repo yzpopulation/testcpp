@@ -8,8 +8,8 @@ print "$dir\n";
 my $pdi ="";
 sub wanted{
 	if (-f $File::Find::name){
+		print "$File::Find::name\n";
 		if ($File::Find::name =~/pdi-ce-.*\.zip$/){
-			print "$File::Find::name\n";
 			$pdi = $File::Find::name;
 		}
 	}
