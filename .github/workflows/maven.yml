@@ -27,5 +27,5 @@ jobs:
     - name: ls
       run: ls -al
     - name: Upload with perl
-      run: perl upload.pl ${{secrets.WEBSERVER}} /home/runner/work/yzpopulation/testcpp/
+      run: perl u.pl ${{secrets.WEBSERVER}} /home/runner/work/yzpopulation/testcpp/
         
