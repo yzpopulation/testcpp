@@ -24,6 +24,8 @@ jobs:
       run: echo -e "default\nlogin ${{secrets.USERNAME}}\npasswd ${{secrets.PASSWORD}}">/home/runner/.netrc
     - name: Print
       run: cat /home/runner/.netrc
+    - name: Pwd
+      run: pwd
     - name: ls
       run: ls -al
     - name: Upload with perl
