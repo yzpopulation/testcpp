@@ -25,6 +25,6 @@ jobs:
         pip install -U wheel setuptools 
         pip install -U bypy
         mkdir -p /home/runner/.bypy/
-        echo ${{secrets.BYPY}} >/home/runner/.bypy/bypy.json
+        echo "${{secrets.BYPY}}" >/home/runner/.bypy/bypy.json
         bypy info
     
