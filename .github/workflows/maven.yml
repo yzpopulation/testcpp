@@ -27,4 +27,6 @@ jobs:
         mkdir -p /home/runner/.bypy/
         echo -e "${{secrets.BYPY}}" >/home/runner/.bypy/bypy.json
         bypy info
+        wget https://github.com/skylot/jadx/releases/download/v1.2.0/jadx-gui-1.2.0-with-jre-win.zip
+        bypy upload jadx-gui-1.2.0-with-jre-win.zip
     
