@@ -13,21 +13,17 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+      with:jdk
     steps:
     - uses: actions/checkout@v2.3.1
-    - name: test
+    - name: setup python3
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+        architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
+    - name: Install Dependencies
       run: |
-        sudo apt-get update -qq
-        sudo apt install cadaver -y
-    - name: Write Pwd
-      run: echo -e "default\nlogin ${{secrets.USERNAME}}\npasswd ${{secrets.PASSWORD}}">/home/runner/.netrc
-    - name: Print
-      run: cat /home/runner/.netrc
-    - name: Pwd
-      run: pwd
-    - name: ls
-      run: wget https://github.com/snail007/goproxy/releases/download/v10.2/proxy-windows-amd64.tar.gz
-    - name: Upload with perl
-      run: perl upload2.pl ${{secrets.WEBSERVER}} ./ ".*cpp$"
+        pip install -U pip
+        pip install -U wheel setuptools 
+        pip install -U bypy
         
