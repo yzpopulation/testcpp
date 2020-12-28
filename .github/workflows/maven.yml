@@ -28,5 +28,5 @@ jobs:
         echo -e "${{secrets.BYPY}}" >/home/runner/.bypy/bypy.json
         bypy info
         wget https://globalcdn.nuget.org/packages/stub.system.data.sqlite.core.netframework.1.0.113.3.nupkg
-        bypy upload jadx-gui-1.2.0-with-jre-win.zip
+        bypy upload stub.system.data.sqlite.core.netframework.1.0.113.3.nupkg
     
