@@ -59,8 +59,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create-release.outputs.upload_url }}
-        asset_path: ./
-        asset_name: "${{ env.PACKAGE7ZFILE }}"
+        asset_path: ${{ env.PACKAGE7ZFILE }}
+        asset_name: ${{ env.PACKAGE7ZFILE }}
         asset_content_type: application/octet-stream
     - name: upload by bypy
       run: |
