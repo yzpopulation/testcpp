@@ -31,6 +31,10 @@ jobs:
         mkdir -p /home/runner/.bypy/
         echo -e "${{secrets.BYPY}}" >/home/runner/.bypy/bypy.json
         bypy info
+    - name: Change Dir
+      run: |
+        mkdir upload
+        cd upload
 #     - name: wget package
 #       run: |
 #         cat get.txt | xargs wget -q --show-progress --progress=bar:force:noscroll -c -P upload/ 
@@ -42,13 +46,10 @@ jobs:
         workflow_conclusion: success
         branch: master
         name: artifact
-        # Optional, directory where to extract artifact
-        path: upload
-        # Optional, defaults to current repo
         repo: yzpopulation/pentaho-kettle
     - name: upload by bypy
       run: |
-        bypy -v upload upload/
+        bypy -v upload ./
     - name: finish
       run: |
         echo "ok!"
