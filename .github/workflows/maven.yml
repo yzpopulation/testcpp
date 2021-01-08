@@ -28,6 +28,7 @@ jobs:
         pip install -U bypy
     - name: config bypy
       run: |
+        echo "REVISION=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
         mkdir -p /home/runner/.bypy/
         echo -e "${{secrets.BYPY}}" >/home/runner/.bypy/bypy.json
         bypy info
@@ -36,7 +37,6 @@ jobs:
         cat get.txt | xargs wget -q --show-progress --progress=bar:force:noscroll -c -P upload/ 
     - name: Split by 7z 10MB
       run: |
-        echo "REVISION=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
         7z a bypy/$REVISION.7z upload/ -v10m -t7z -mx=0
         ls bypy/ |wc -w
     - name: upload by bypy
