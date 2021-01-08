@@ -37,8 +37,8 @@ jobs:
         cd upload
     - name: Set current date as env variable
       run: |
-        echo "NOW=$(date +'%Y%m%d%H%M%S')" >> $Env:GITHUB_ENV
-        echo "PACKAGE7ZFILE=${{ env.NOW }}-${{ github.run_id }}.7z" >> $Env:GITHUB_ENV
+        echo "NOW=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
+        echo "PACKAGE7ZFILE=${{ env.NOW }}-${{ github.run_id }}.7z" >> $GITHUB_ENV
     - name: Package 
       run: 7z a "${{ env.PACKAGE7ZFILE }}" ./
 #     - name: wget package
