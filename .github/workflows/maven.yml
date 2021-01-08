@@ -16,17 +16,28 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2.3.1
+    - name: setup-python
     - uses: actions/setup-python@v2
       with:
         python-version: '3.7' # Version range or exact version of a Python version to use, using SemVer's version range syntax
         architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
+    - name: pip install
     - run: |
         pip install -U pip
         pip install -U wheel setuptools 
         pip install -U bypy
+    - name: config pip
+    - run: |
         mkdir -p /home/runner/.bypy/
         echo -e "${{secrets.BYPY}}" >/home/runner/.bypy/bypy.json
         bypy info
+    - name: wget package
+    - run: |
         cat get.txt | xargs wget -q --show-progress --progress=bar:force:noscroll -c -P upload/ 
+    - name: upload by bypy
+    - run: |
         bypy upload upload/
+    - name: finish
+    - run: |
+        echo "ok!"
     
