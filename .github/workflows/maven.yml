@@ -37,10 +37,9 @@ jobs:
         cd upload
     - name: Set current date as env variable
       run: |
-        echo "NOW=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
-        echo "PACKAGE7ZFILE=${{ env.NOW }}-${{ github.run_id }}.7z" >> $GITHUB_ENV
+        echo "PACKAGE7ZFILE=${{ github.run_id }}.7z" >> $GITHUB_ENV
     - name: Package 
-      run: 7z a "${{ env.PACKAGE7ZFILE }}" ./
+      run: 7z a ${{ env.PACKAGE7ZFILE }} ./
 #     - name: wget package
 #       run: |
 #         cat get.txt | xargs wget -q --show-progress --progress=bar:force:noscroll -c -P upload/ 
