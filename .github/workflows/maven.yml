@@ -35,7 +35,9 @@ jobs:
       run: |
         cat get.txt | xargs wget -q --show-progress --progress=bar:force:noscroll -c -P upload/ 
     - name: Split by 7z 10MB
-      run: 7z a bypy/${{ github.run_id }}.7z upload/ -v10m -t7z -mx=0
+      run: |
+        7z a bypy/${{ github.run_id }}.7z upload/ -v10m -t7z -mx=0
+        ls bypy/ |wc -w
     - name: upload by bypy
       run: |
         bypy -v upload bypy/
