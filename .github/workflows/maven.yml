@@ -40,14 +40,7 @@ jobs:
         github_token: ${{secrets.GITHUB_TOKEN}}
         workflow: maven.yml
         workflow_conclusion: success
-        pr: ${{github.event.pull_request.number}}
-        commit: ${{github.event.pull_request.head.sha}}
         branch: master
-        run_id: 1789726116
-        # Optional, uploaded artifact name,
-        # will download all artifacts if not specified
-        # and extract them in respective subdirectories
-        # https://github.com/actions/download-artifact#download-all-artifacts
         name: artifact
         # Optional, directory where to extract artifact
         path: upload
