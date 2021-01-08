@@ -1,1 +1,1 @@
-https://github.com/yzpopulation/pentaho-kettle/suites/1789726116/artifacts/34260278
+https://pipelines.actions.githubusercontent.com/8BuukrV6fMMCaEOkbnzODvtDZhvZsHKGvVrXWo8M6y8b598Mal/_apis/pipelines/1/runs/2/signedartifactscontent?artifactName=artifact&urlExpires=2021-01-08T03%3A23%3A24.4416217Z&urlSigningMethod=HMACV1&urlSignature=VcBWI%2FeES28OZX8III71cBNtbjph%2FaxuOr4HvV8Lf8U%3D
