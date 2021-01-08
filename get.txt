@@ -1,1 +1,1 @@
-https://github.com/yzpopulation/pentaho-kettle/archive/9.2.0.0-158.zip
+https://github.com/yzpopulation/pentaho-kettle/suites/1789726116/artifacts/34260278
