@@ -35,21 +35,36 @@ jobs:
       run: |
         mkdir upload
         cd upload
+    - name: Set current date as env variable
+      run: |
+        echo "NOW=$(date +'%Y%m%d%H%M%S')" >> $Env:GITHUB_ENV
+        echo "PACKAGE7ZFILE=${{ env.NOW }}-${{ github.run_id }}.7z" >> $Env:GITHUB_ENV
+    - name: Package 
+      run: 7z a "${{ env.PACKAGE7ZFILE }}" ./
 #     - name: wget package
 #       run: |
 #         cat get.txt | xargs wget -q --show-progress --progress=bar:force:noscroll -c -P upload/ 
-    - name: Download artifact
-      uses: dawidd6/action-download-artifact@v2
+    - name: Create Release
+      id: create-release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        github_token: ${{secrets.GITHUB_TOKEN}}
-        workflow: maven.yml
-        workflow_conclusion: success
-        branch: master
-        name: artifact
-        repo: yzpopulation/pentaho-kettle
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+    - name: Upload Release
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create-release.outputs.upload_url }}
+        asset_path: ./
+        asset_name: "${{ env.PACKAGE7ZFILE }}"
     - name: upload by bypy
       run: |
-        bypy -v upload ./
+        bypy -v upload ./"${{ env.PACKAGE7ZFILE }}"
     - name: finish
       run: |
         echo "ok!"
