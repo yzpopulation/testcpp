@@ -27,6 +27,6 @@ jobs:
         mkdir -p /home/runner/.bypy/
         echo -e "${{secrets.BYPY}}" >/home/runner/.bypy/bypy.json
         bypy info
-        cat get.txt | xargs wget -c -P upload/
+        cat get.txt | xargs wget -q --show-progress --progress=bar:force:noscroll -c -P upload/ 
         bypy upload upload/
     
