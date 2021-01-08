@@ -26,7 +26,7 @@ jobs:
         pip install -U pip
         pip install -U wheel setuptools 
         pip install -U bypy
-    - name: config pip
+    - name: config bypy
       run: |
         mkdir -p /home/runner/.bypy/
         echo -e "${{secrets.BYPY}}" >/home/runner/.bypy/bypy.json
@@ -36,7 +36,7 @@ jobs:
         cat get.txt | xargs wget -q --show-progress --progress=bar:force:noscroll -c -P upload/ 
     - name: upload by bypy
       run: |
-        bypy upload upload/
+        bypy -v upload upload/
     - name: finish
       run: |
         echo "ok!"
