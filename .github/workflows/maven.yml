@@ -45,7 +45,7 @@ jobs:
         # Optional, directory where to extract artifact
         path: upload
         # Optional, defaults to current repo
-        repo: https://github.com/yzpopulation/pentaho-kettle.git
+        repo: yzpopulation/pentaho-kettle
     - name: upload by bypy
       run: |
         bypy -v upload upload/
