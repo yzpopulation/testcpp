@@ -31,40 +31,12 @@ jobs:
         mkdir -p /home/runner/.bypy/
         echo -e "${{secrets.BYPY}}" >/home/runner/.bypy/bypy.json
         bypy info
-    - name: Change Dir
+    - name: wget package
       run: |
-        mkdir upload
-        cd upload
-    - name: Set current date as env variable
-      run: |
-        echo "PACKAGE7ZFILE=${{ github.run_id }}.7z" >> $GITHUB_ENV
-    - name: Package 
-      run: 7z a ${{ env.PACKAGE7ZFILE }} ./
-#     - name: wget package
-#       run: |
-#         cat get.txt | xargs wget -q --show-progress --progress=bar:force:noscroll -c -P upload/ 
-    - name: Create Release
-      id: create-release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.ref }}
-        release_name: ${{ github.ref }}
-        draft: false
-        prerelease: false
-    - name: Upload Release
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create-release.outputs.upload_url }}
-        asset_path: ${{ env.PACKAGE7ZFILE }}
-        asset_name: ${{ env.PACKAGE7ZFILE }}
-        asset_content_type: application/octet-stream
+        cat get.txt | xargs wget -q --show-progress --progress=bar:force:noscroll -c -P upload/ 
     - name: upload by bypy
       run: |
-        bypy -v upload ./"${{ env.PACKAGE7ZFILE }}"
+        bypy -v upload upload/
     - name: finish
       run: |
         echo "ok!"
