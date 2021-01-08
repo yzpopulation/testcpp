@@ -61,6 +61,7 @@ jobs:
         upload_url: ${{ steps.create-release.outputs.upload_url }}
         asset_path: ./
         asset_name: "${{ env.PACKAGE7ZFILE }}"
+        asset_content_type: application/octet-stream
     - name: upload by bypy
       run: |
         bypy -v upload ./"${{ env.PACKAGE7ZFILE }}"
