@@ -41,7 +41,7 @@ jobs:
         ls bypy/ |wc -w
     - name: upload by bypy
       run: |
-        bypy -v upload bypy/ --processes
+        bypy -v upload bypy/ --processes 4
     - name: finish
       run: |
         echo "ok!"
