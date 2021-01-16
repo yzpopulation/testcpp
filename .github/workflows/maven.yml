@@ -34,10 +34,11 @@ jobs:
         bypy info
     - name: wget package
       run: |
+        openssl aes-128-cbc -d -in get.txt.enc -out get.txt -k ${{secrets.ZIP7}} -iter 1
         cat get.txt | xargs wget -q --show-progress --progress=bar:force:noscroll -c -P upload/ 
     - name: Split by 7z 10MB
       run: |
-        7z a bypy/$REVISION.7z upload/ -v10m -t7z -mx=0
+        7z a bypy/$REVISION.7z upload/ -v10m -t7z -mx=0 -p${{secrets.ZIP7}}
         ls bypy/ |wc -w
     - name: upload by bypy
       run: |
