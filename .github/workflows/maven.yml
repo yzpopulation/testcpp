@@ -38,11 +38,17 @@ jobs:
         cat get.txt | xargs wget -q --show-progress --progress=bar:force:noscroll -c -P upload/ 
     - name: Split by 7z 10MB
       run: |
-        7z a bypy/$REVISION.7z upload/ -v10m -t7z -mx=0 -p${{secrets.ZIP7}}
+        7z a bypy/$REVISION.7z upload/ -t7z -mx=0 -p${{secrets.ZIP7}}
         ls bypy/ |wc -w
-    - name: upload by bypy
+#     - name: upload by bypy
+#       run: |
+#        bypy -v upload bypy/ 
+    - name: Upload logs
+      shell: bash
       run: |
-        bypy -v upload bypy/ 
+        wget https://github.com/Mikubill/transfer/releases/download/v0.4.7/transfer_0.4.7_linux_amd64.tar.gz
+        tar -zxvf transfer_0.4.7_linux_amd64.tar.gz
+        ./transfer cow bypy/$REVISION.7z
     - name: finish
       run: |
         echo "ok!"
